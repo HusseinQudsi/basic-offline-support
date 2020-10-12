@@ -1,0 +1,60 @@
+{
+  "name": "Javascript-ES6-Algorithms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Hussein Qudsi <hussein8844@gmail.com>",
+  "license": "MIT",
+  "heroku-run-build-script": true,
+  "homepage": "/",
+  "scripts": {
+    "client": "documentation build src/public/script/**/*.js -f html -o src/public docs",
+    "build": "babel src --copy-files --out-dir dist",
+    "test-client-brk": "npm run build && mocha dist/public/spec --recursive --exit --debug-brk",
+    "test-client": "npm run build && mocha dist/public/spec --recursive --exit",
+    "test": "npm run build && mocha dist/server/spec --recursive --exit",
+    "test-brk": "npm run build && mocha dist/server/spec --recursive --exit --debug-brk",
+    "dev": "nodemon --exec npm run restart",
+    "dev-brk": "rimraf dist && npm run build && nodemon --exec npm run start-brk",
+    "restart": "rimraf dist && npm run client && npm run build && npm run start",
+    "start": "node dist/index.js",
+    "start-brk": "node --inspect-brk dist/index.js"
+    
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build && npm run test-client"
+    }
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "husky": "^3.1.0",
+    "validator": "^10.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^23.4.2",
+    "chai": "^4.2.0",
+    "eslint": "^4.15.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "nodemon": "^1.18.3",
+    "prettier": "^1.15.2",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.3.0"
+  }
+}
